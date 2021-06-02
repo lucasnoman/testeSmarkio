@@ -1,19 +1,29 @@
 # Teste para processo seletivo da Smarkio
 
-### Banco de dados:
+&nbsp;
 
-Usei o `mysql2`, com o querybuilder `knex`, então para fazer a conexão com o banco de dados, deve-se alterar os dados:
-`database`, `user` e `password` no arquivo **`knexfile`** na pasta `Back-end`.
+## Banco de dados:
 
----
+Usei o `mysql2`, com o "_querybuilder_" `knex`, então para fazer a conexão com o banco de dados, deve-se alterar os dados:
+`database`, `user` e `password` no arquivo **`.env.example`** (além de remover o ".example" do nome) na pasta `Back-end`.
 
-### Para execução do código:
-Dentro da pasta **`Back-end`** e **`Front-end`** separadamente, use os comandos:
+&nbsp;
 
-Para instalar as dependências: `yarn install`
+## Para execução do código:
 
-Para executar: `yarn start`
+No seu terminal dentro das pastas **`Back-end`** e **`Front-end`**, use:
 
-Apenas dentro da pasta `Back-end`, execute o comando `yarn knex migrate:latest`, para que a tabela seja criada.
+`yarn install` => Para instalar as dependências.
 
-Os requests http estão no formato .paw, mas exportei um arquivo .txt.
+`yarn start` => Para executar o servidor e página.
+
+Dentro de `Back-end`: `yarn knex migrate:latest` => para criar a tabela.
+
+&nbsp;
+
+**Obs:** Os requests http estão no formato .paw, mas exportei um arquivo .json para **Postman**.
+
+
+
+
+- Removido styled-components para reduzir burocracia desnecessária

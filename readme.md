@@ -23,7 +23,5 @@ Dentro de `Back-end`: `yarn knex migrate:latest` => para criar a tabela.
 
 **Obs:** Os requests http estão no formato .paw, mas exportei um arquivo .json para **Postman**.
 
-
-
-
 - Removido styled-components para reduzir burocracia desnecessária
+- Removido dado sensível em commit antigo

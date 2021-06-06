@@ -1,9 +1,6 @@
 const fs = require('fs');
-const path = require('path');
 const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
-
-let reqPath = path.join(__dirname, '../');
 
 const textToSpeech = new TextToSpeechV1({
   authenticator: new IamAuthenticator({
@@ -12,7 +9,7 @@ const textToSpeech = new TextToSpeechV1({
   serviceUrl: process.env.TEXT_TO_SPEECH_URL,
 });
 
-const synthesize = (id, user_comments) => {
+const synthesize = ({ user_comments, audio_path }) => {
   const synthesizeParams = {
     text: user_comments,
     accept: 'audio/wav',
@@ -27,7 +24,7 @@ const synthesize = (id, user_comments) => {
       return textToSpeech.repairWavHeaderStream(response.result);
     })
     .then(buffer => {
-      fs.writeFileSync(reqPath + `/audio/${id}.wav`, buffer);
+      fs.writeFileSync(audio_path, buffer);
     })
     .catch(err => {
       console.log('error:', err);

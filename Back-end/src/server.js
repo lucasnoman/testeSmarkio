@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 require('dotenv').config();
 
 const express = require('express');
@@ -8,6 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json()); //habilita recebimento em JSON dos clients http
 app.use(routes);
+
+// static for audio
+app.use(express.static('public'));
 
 // notFound
 app.use((req, res, next) => {

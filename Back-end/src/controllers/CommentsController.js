@@ -1,14 +1,18 @@
 const knex = require('../database');
 const { v4: uuidv4 } = require('uuid');
+const path = require('path');
+
+require('dotenv').config();
 
 const synthesize = require('../service/textToSpeech');
+const reqPath = path.join(__dirname, '../../public/');
 
 module.exports = {
   async index(req, res, next) {
     try {
-      const results = await knex('comments');
+      const databaseCommentsTable = await knex('comments');
 
-      return res.status(200).json(results);
+      return res.status(200).json(databaseCommentsTable);
     } catch (error) {
       next(error);
     }
@@ -22,15 +26,15 @@ module.exports = {
       const userInputData = {
         id: id,
         user_comments,
-        audio_path: `../audio/${id}.wav`,
+        audio_path: `${reqPath}audio/${id}.wav`,
       };
 
-      // console.log(userInputData);
-      synthesize(userInputData.id, userInputData.user_comments);
+      console.log(userInputData.audio_path);
+      synthesize(userInputData);
 
       await knex('comments').insert(userInputData);
 
-      return res.status(201).send();
+      return res.status(201).json({ path: `${id}.wav` });
     } catch (error) {
       next(error);
     }

@@ -22,12 +22,11 @@ module.exports = {
       const userInputData = {
         id: id,
         user_comments,
-        audio_path: `../audio/${id}`,
+        audio_path: `../audio/${id}.wav`,
       };
 
-      setTimeout(() => {
-        synthesize(id, user_comments);
-      }, 1);
+      // console.log(userInputData);
+      synthesize(userInputData.id, userInputData.user_comments);
 
       await knex('comments').insert(userInputData);
 
